@@ -1,0 +1,80 @@
+This is just a text file of personal notes and to-do items. Usually saved as .js for syntax highlighting (comments specifically).
+Commented out (re: JS syntax) sections indicate feature having been implemented successfully.
+
+To do: 
+read everything on this website: http://diveintohtml5.info/
+									(from http://diveintohtml5.info/storage.html)
+
+
+BATTLE
+	FIGHT
+	// next: in battle, left/right keys select enemies:
+	// 	hit left, start on leftmost enemy
+	// 	right, start on rightmost
+	// then, after initial, left/right goes left or right
+
+	implement special boss behavior:
+		// make an array of all the boss names, and have a isBossBattle function. In the clickAttack function, 
+		// have Mipsy cast damage shields if 
+		// 	-it is a boss
+		// 	-if not, meaning just normal enemies, only if less than 3
+			-also, optional parameter of only case if above ability level X (5 for me)
+		
+		hasting / slowing checking/acting
+		// later, velm throwing up protection shields
+
+	Modify progress key to 
+		a) highlight action to be performed with it, (currently attacking or clicking 'next')
+		// b) change upon tab to do tab-selected item instead, with a hotkey to go back to default item (instead of having to tab back)
+
+	POTIONS
+	group potions into single left-right rotating select menus, with number in that direction displayed over arrows
+	5         1  4          0
+	< HEAL 35 >  < HASTE 40%> etc (each sep by <br> in practice...)
+		healing -- start at second highest 
+		haste -- start at highest
+		slow -- start at highest
+		other -- start at highest (damage potions etc?)
+	if you mouse over the arrow for potions to the left or right, it will imm. expand outward 
+		and show you the quantity/healing power of the one immediate to the one youre on
+	// hitting tab will go to potions (select/highlight, not click)
+	// 	(could set tabindex to 1 instead of hotkey?)
+	// 	( ^-- but keep it clean, we should still store it in the hotkey script...)
+	// 	(i think its .focus() to select)
+
+NAV PAGE
+	// figure out and display how much XP until next level?
+	// tab goes to talk to people links
+
+	use AJAX to dynamically load map without refreshing the page?
+
+
+CHROME GEN
+reeeead up: http://julip.co/2010/01/how-to-build-a-chrome-extension-part-2-options-and-localstorage/
+
+settings page:
+	switch on and off basically all features
+	change hotkeys (incl remove)
+	dualkey (WASD) or full, single-key navigation (square of keys around WADX area 
+													// (do something w center key?))
+	switch between idnq and neoquest-mania for when clicking on icon, or specify new URL
+
+	maybe later even make ability to configure(by user settings) battleMoveKey behavior for each character
+
+
+
+//NOTES ON "BEFORELOAD" EVENTLISTENER  in nqscript.js FROM STACKOVERFLOW:
+	// function doBeforeLoad(event) {
+	//     // Check to see if its what you want to redirect
+	//     // We also check for a data attribute that we set, so we know its allready been redirected
+	//     // we do this because if you redirect a source it will fire another beforeload event for its new url
+	//     if (!event.srcElement.dataset['redirected'] && event.srcElement.tagName == "IMG" && event.srcElement.src.endsWith('/test.png')) {
+	//         // If it is something we want to redirect then set a data attribute so we know its allready been changed
+	//         // Set that attribute to it original src in case we need to know what it was later
+	//         event.srcElement.dataset['redirected'] = event.srcElement.src;
+	//         // Set the source to the new url you want the element to point to
+	//         event.srcElement.src = "replacement.png";
+	//     }
+	// }
+
+	// document.addEventListener('beforeload', doBeforeLoad, true);
