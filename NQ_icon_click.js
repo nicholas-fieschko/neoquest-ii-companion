@@ -7,7 +7,7 @@ chrome.browserAction.onClicked.addListener(function(activeTab) {
 			var newURL = "http://www.neopets.com/games/nq2/nq2.phtml";
 			for (var i = 0; i < tabs.length; i++) {
 				if (isNQURL.test(tabs[i].url)){
-					newURL = "http://www.idnq-guide.com/index.php?page=maps";
+					newURL = "http://idnq.net/index.php?page=maps";
 				}
 			}
 			
