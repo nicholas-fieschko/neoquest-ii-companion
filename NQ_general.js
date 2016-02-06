@@ -1,5 +1,8 @@
+var mipsyAttackJS = 'setaction(9201); document.ff.submit(); return false;';
+var damageAndDamagedMember = partyHealthDown(); 
+var mostDamageToMember = damageAndDamagedMember[0];
+var mostDamagedMember = damageAndDamagedMember[1];
 
-//Action determination for each page.
 function mainscriptThingsToDo(){
 	if(isInBattle()){
 		if(isMidBattle()){
@@ -73,8 +76,18 @@ function displayHealthNotice(){
 	}
 }
 
+//Change ugly Cave Ogre to Tyrannian Lupe!
+//Can be generalized to replace any given images later.
+function replaceCaveOgre() {
+	var caveOgre = document.querySelector("img[src='http://images.neopets.com/nq2/m/m1011_e49d8.gif']");
+	if(caveOgre != undefined){
+		var replacementURL = "http://images.neopets.com/pets/angry/lupe_tyrannian_baby.gif";
+		caveOgre.src = replacementURL;
+	}
+}
+
 function isOnMapScreen(){
-	return (document.querySelector("img[src='http://images.neopets.com/nq2/x/nav.gif']") != undefined);
+	return (document.querySelector("img[src='http://images.neopets.com/nq2/x/nav.gif']") != undefined); //Are the navigation controls present?
 }
 
 function displayExperienceToNextLevel(){
@@ -166,6 +179,7 @@ function removeMipsyAttack(){
 	}
 }
 
+//maybe remove use of jQuery here later
 function moveFleeButton(){
 		var originalFleeButton = document.querySelector("a[onclick='setaction(4); document.ff.submit(); return false;;']");
 		originalFleeButton.parentNode.removeChild(originalFleeButton);
@@ -197,7 +211,7 @@ function moveFleeButton(){
 		});
 }
 
-function removeOptionsAndMainPageLinks(){ //And cutscene link.
+function removeOptionsAndMainPageLinks(){ //...And cutscene link, starting in Act 2.
 	var navigationContainer = document.querySelector('img[src="http://images.neopets.com/nq2/x/nav.gif"]').parentNode;
 	var navigationContainerChildren = navigationContainer.childNodes;
 
@@ -214,14 +228,22 @@ function removeOptionsAndMainPageLinks(){ //And cutscene link.
 	navigationContainer.removeChild(mainPageLink);
 }
 
+// function betterPotionManagement(){
+// 	var arr = [];
+// 	var potionCell = $('td:contains(" Healing ")').last();
+// 	potionCell.contents().each(function(){
+// 		arr.push($(this)); 
+// 		})
+// }
+
 function whoseTurn(){
 	var redText = document.querySelectorAll("font[color='red']>b");
 	var actingCharacter = redText[redText.length - 1].firstChild.nodeValue;
 	return actingCharacter;
 }
 
-//Returns array with [highest level of injury (diff between curr and max HP), "Name of Party Member"]
-function partyHealthDown(){ 
+function partyHealthDown(){ //Returns [highest level of injury (diff between curr and max HP), "Name of Party Member"]
+	//Note... Assumes Velm is in the party! Hard-coded this way because I only use it for determining whether Velm should heal someone...
 	var charHealthPointsArray = $('td[align="center"]:contains("Rohane"):contains("Mipsy"):contains("Talinia"):contains("Velm") td>font:contains("/")');
 		charHealthPointsArray = $.map(charHealthPointsArray, function(n){
 		var hp = n.firstChild.nodeValue;
@@ -256,12 +278,4 @@ function isBossBattle(){
 		}
 	}
 	return false;
-}
-
-function replaceCaveOgre() {
-	var caveOgre = document.querySelector("img[src='http://images.neopets.com/nq2/m/m1011_e49d8.gif']");
-	if(caveOgre != undefined){
-		var replacementURL = "http://images.neopets.com/pets/angry/lupe_tyrannian_baby.gif";
-		caveOgre.src = replacementURL;
-	}
 }

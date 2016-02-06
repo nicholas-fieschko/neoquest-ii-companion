@@ -1,12 +1,5 @@
-// Combat screen constants
-var mipsyAttackJS = 'setaction(9201); document.ff.submit(); return false;';
-var damageAndDamagedMember = partyHealthDown(); 
-var mostDamageToMember = damageAndDamagedMember[0];
-var mostDamagedMember = damageAndDamagedMember[1];
-
-// Navigation Key Constants
-
 var pageChangeSubmitted = false;
+// var dualKeyNavigation = true;
 var dualKeyNavigation = false;
 
 
